@@ -1,0 +1,41 @@
+Python | Data visualization using Bokeh
+
+Bokeh is a data visualization library in Python that provides high-performance
+interactive charts and plots. Bokeh output can be obtained in various mediums like notebook, html and server.
+It is possible to embed bokeh plots in Django and flask apps.
+
+Bokeh provides two visualization interfaces to users:
+
+bokeh.models : A low level interface that provides high flexibility to application developers.
+bokeh.plotting : A high level interface for creating visual glyphs
+
+Your First Plot
+First, create a new file called my_first_plot.py in the same directory as wwii_thor.csv and then open it up in a text editor. We’ll be adding lines to this file to run.
+
+#my_first_plot.py
+from bokeh.plotting import figure, output_file, show
+To implement and use Bokeh, we first import some basics that we need from the bokeh.plotting module.
+
+figure is the core object that we will use to create plots. figure handles the styling of plots, including title, labels, axes, and grids, and it exposes methods for adding data to the plot. The output_file function defines how the visualization will be rendered (namely to an html file) and the show function will be invoked when the plot is ready for output. show tells Bokeh that all of the data has been added to the plot and it is time to render it.
+
+output_file('my_first_graph.html')
+Bokeh recommends that output_file, to which we pass a file name, be called at the start of your script, immediately after imports. An alternative output function to be aware of is output_notebook which is used to show plots in-line in a Jupyter Notebook. To learn more about installing and using Jupyter notebooks, see Jupyter’s documentation.
+
+x = [1, 3, 5, 7]
+y = [2, 4, 6, 8]
+Next we’ll create some data to plot. Data in Bokeh can take on different forms, but at its simplest, data is just a list of values. We create one list for our x-axis and one for our y-axis.
+
+With our output format and data fixed, we can instantiate a figure and add the data to it.
+
+p = figure()
+
+p.circle(x, y, size=10, color='red', legend='circle')
+p.line(x, y, color='blue', legend='line')
+p.triangle(y, x, color='gold', size=10, legend='triangle')
+p is a common variable name for a figure object, since a figure is a type of plot.
+
+After instantiating the figure, we call the circle , line, and triangle methods to plot our data. These types of methods are known as a glyph method. The term glyph in Bokeh refers to the lines, circles, bars, and other shapes that are added to plots to display data.
+
+If we wanted, we could just keep adding glyphs to the plot! In addition to the circle, line, and triangle glyphs, there are many others, including: asterisk, circle_cross, circle_x, cross, diamond, diamond_cross, inverted_triangle, square, square_cross, square_x, and x.
+
+When calling a glyph method, at a minimum, we must pass the data we would like to plot, but frequently we might add styling arguments. Here, we set a size, color, and legend name for each glyph.
