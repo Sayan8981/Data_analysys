@@ -2,7 +2,7 @@ import pandas as pd
 from bokeh.plotting import figure, output_file, show
 from bokeh.models import ColumnDataSource
 from bokeh.models.tools import HoverTool
-from bokeh.palettes import Spectral5,Inferno5,RdGy5
+from bokeh.palettes import Spectral5,Spectral3,Inferno5,RdGy5
 from bokeh.transform import factor_cmap
 
 #The Basics of Bokeh
@@ -101,8 +101,9 @@ class Bar_charts:
 
 #Stacked Bar Charts and Sub-sampling Data: Types of Munitions Dropped by Country
 class stacked_Bar_charts:
-    
+
     def stacked_bar_charts(self):
+        #import pdb;pdb.set_trace()
         output_file('types_of_munitions.html')
         data = pd.read_csv('test.csv')
         filter = data['COUNTRY_FLYING_MISSION'].isin(('USA','GREAT BRITAIN'))
@@ -116,7 +117,7 @@ class stacked_Bar_charts:
         p.vbar_stack(stackers=['TONS_HE', 'TONS_FRAG', 'TONS_IC'],
                      x='COUNTRY_FLYING_MISSION', source=source,
                      legend = ['High Explosive', 'Fragmentation', 'Incendiary'],
-                     width=0.5, color=Spectral5)
+                     width=0.5, color=Spectral3)
         """To create the stacked bar chart, we call the vbar_stack glyph method.
         Rather than passing a single column name to a y parameter, we instead pass
         a list of column names as stackers. The order of this list determines the 
